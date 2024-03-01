@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yes_no_app/presentation/providers/chat_provider.dart';
 import 'package:yes_no_app/presentation/widgets/chat/her_message_bubble.dart';
 import 'package:yes_no_app/presentation/widgets/chat/my_message_bubble.dart';
 import 'package:yes_no_app/presentation/widgets/shared/message_field_box.dart';
@@ -14,7 +16,8 @@ class ChatScreen extends StatelessWidget {
           padding: EdgeInsets.all(4.0),
           child: CircleAvatar(
             backgroundImage: NetworkImage(
-                'https://www.stylist.co.uk/images/app/uploads/2022/06/01105352/jennifer-aniston-crop-1654077521-1390x1390.jpg?w=256&h=256&fit=max&auto=format%2Ccompress'),
+                // 'https://www.stylist.co.uk/images/app/uploads/2022/06/01105352/jennifer-aniston-crop-1654077521-1390x1390.jpg?w=256&h=256&fit=max&auto=format%2Ccompress'),
+                'https://myket.ir/app-icon/76cbe69a-b0af-4d00-9ba5-7506bdd8282d.png'),
           ),
         ),
         title: const Text('Mi amor ♥️'),
@@ -26,6 +29,9 @@ class ChatScreen extends StatelessWidget {
 }
 
 class _ChatView extends StatelessWidget {
+
+  final chatProvider = context.watch<ChatProvider>();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,11 +41,11 @@ class _ChatView extends StatelessWidget {
           children: [
             Expanded(
                 child: ListView.builder(
-                    itemCount: 100,
+                    itemCount: 2,
                     itemBuilder: (context, index) {
-                      return ( index % 2 == 0 )
-                        ? const HerMessageBubble()
-                        : const MyMessageBubble();
+                      return (index % 2 == 0)
+                          ? const HerMessageBubble()
+                          : const MyMessageBubble();
                     })),
 
             /// Caja de texto de mensajes
