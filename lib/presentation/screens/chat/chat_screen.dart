@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yes_no_app/domain/entities/message.dart';
+// import 'package:provider/provider.dart';
+
 import 'package:yes_no_app/presentation/providers/chat_provider.dart';
 import 'package:yes_no_app/presentation/widgets/chat/her_message_bubble.dart';
 import 'package:yes_no_app/presentation/widgets/chat/my_message_bubble.dart';
@@ -30,11 +33,12 @@ class ChatScreen extends StatelessWidget {
 
 class _ChatView extends StatelessWidget {
 
-  final chatProvider = context.watch<ChatProvider>();
-
   @override
   Widget build(BuildContext context) {
+  final chatProvider = context.watch<ChatProvider>();
+
     return SafeArea(
+      
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
@@ -43,9 +47,12 @@ class _ChatView extends StatelessWidget {
                 child: ListView.builder(
                     itemCount: 2,
                     itemBuilder: (context, index) {
-                      return (index % 2 == 0)
+                      //Instacia del message que sabrá de quién es el mensaje
+                      final message = chatProvider.messageList[index];
+                      //Asigna MessageBubble a partir de quién venga el mensaje
+                      return (message.fromWho == FromWho.hers)
                           ? const HerMessageBubble()
-                          : const MyMessageBubble();
+                          : MyMessageBubble(message: message);
                     })),
 
             /// Caja de texto de mensajes

@@ -5,7 +5,7 @@ class ChatProvider extends ChangeNotifier {
   List<Message> messageList = [
     Message(text: 'Hola', fromWho: FromWho.me),
     Message(
-        text: 'Kevin, ¿te vas a ir a especial de móviles en Progreso?',
+        text: 'Jesús, ¿te vas a ir a especial de móviles en Progreso?',
         fromWho: FromWho.me),
   ];
 }
